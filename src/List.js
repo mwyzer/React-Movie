@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import axios from "axios";
@@ -13,17 +13,17 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 
 
- 
+
 
 
 import Detail from "./Detail";
 
 const List = () => {
-  const [stext, setstext] = useState("avengers");
+  const [stext, setstext] = useState("batman");
   const [result, setresult] = useState([]);
   const [result2, setresult2] = useState([]);
   const [open, setOpen] = React.useState(false);
-  
+
   const [detailbool, setdetailbool] = useState(false);
   const [imval, setimval] = useState();
 
@@ -32,7 +32,7 @@ const List = () => {
   };
   const show = () => {
     axios
-      .get(`https://www.omdbapi.com/?apikey=4eb65943&s=${stext}`)
+      .get(`https://www.omdbapi.com/?apikey=faf7e5bb&s=${stext}`)
       .then((res) => {
         setresult(res.data.Search.map((p) => p));
       })
@@ -40,22 +40,22 @@ const List = () => {
         //alert("No search results found!! check for spelling ");
         setOpen(true);
       });
-      show2();
-     
+    show2();
+
   };
 
   const show2 = () => {
     axios
-    .get(`https://www.omdbapi.com/?apikey=5fcb333a&s=${stext}&page=2`)
-    .then((res) => {
-      setresult2(res.data.Search.map((s) => s));
-      
-    })
-    .catch((error) => {
-     
-    });
-    
-      
+      .get(`https://www.omdbapi.com/?apikey=faf7e5bb&s=${stext}&page=2`)
+      .then((res) => {
+        setresult2(res.data.Search.map((s) => s));
+
+      })
+      .catch((error) => {
+
+      });
+
+
 
   };
   function showDetail(i) {
@@ -66,7 +66,7 @@ const List = () => {
   function funsetdetailbool() {
     setdetailbool(false);
   }
-  
+
   useEffect(() => {
     show();
   }, []);
@@ -80,39 +80,39 @@ const List = () => {
 
   return (
     <>
-     <Welcome
-		loopDuration={2000}
-		data={[
-		{
-		
-    image: require('./WatchAnyMovieLogo.png') ,
-    imageAnimation: 'flip',
-    backgroundColor: '#212121',
-    // textAnimation: "flip",
-    // textColor: 'white',
-    // text:'Watch Any Movie'
-    }
-   
-		// },
-		// {
-    //   image: require('./watchanymovie-logo.PNG') ,
-    // imageAnimation: 'rotateIn',
-    // backgroundColor: '#212121',
-    // textAnimation: "fadeInUp",
-    // textColor: 'white',
-    // text:'Watch Any Movie'
-		// },
-		// { 
-    //   image: require('./watchanymovie-logo.PNG') ,
-    // imageAnimation: 'rotateIn',
-    // backgroundColor: '#212121',
-    // textAnimation: "fadeInUp",
-    // textColor: 'white',
-    // text:'Watch Any Movie'
-		// }
-	]}
+      <Welcome
+        loopDuration={2000}
+        data={[
+          {
 
-/>
+            image: require('./WatchAnyMovieLogo.png'),
+            imageAnimation: 'flip',
+            backgroundColor: '#212121',
+            // textAnimation: "flip",
+            // textColor: 'white',
+            // text:'Watch Any Movie'
+          }
+
+          // },
+          // {
+          //   image: require('./watchanymovie-logo.PNG') ,
+          // imageAnimation: 'rotateIn',
+          // backgroundColor: '#212121',
+          // textAnimation: "fadeInUp",
+          // textColor: 'white',
+          // text:'Watch Any Movie'
+          // },
+          // { 
+          //   image: require('./watchanymovie-logo.PNG') ,
+          // imageAnimation: 'rotateIn',
+          // backgroundColor: '#212121',
+          // textAnimation: "fadeInUp",
+          // textColor: 'white',
+          // text:'Watch Any Movie'
+          // }
+        ]}
+
+      />
 
       <center>
         <div className=" navbar-dark bg-dark">
@@ -141,7 +141,7 @@ const List = () => {
             }}
             onClick={show}
           >
-            <SearchIcon  />
+            <SearchIcon />
           </Fab>
           <br />
           <br />
@@ -167,7 +167,7 @@ const List = () => {
                         borderRadius: "4px",
                       }}
                     >
-                       {p.Year}
+                      {p.Year}
                     </span>
                     <div className="middle">
                       <div className="text">
@@ -221,18 +221,18 @@ const List = () => {
           </div>
         </center>
         <Snackbar
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        open={open}
-        autoHideDuration={1500}
-        onClose={handleClose}
-        style={{marginTop:"20vh"}}
-        
-        message="No search results found !!"/>
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          open={open}
+          autoHideDuration={1500}
+          onClose={handleClose}
+          style={{ marginTop: "20vh" }}
 
-       
+          message="No search results found !!" />
+
+
 
         {detailbool ? (
           <Detail imval={imval} funsetdetailbool={funsetdetailbool} />
